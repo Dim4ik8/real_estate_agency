@@ -50,7 +50,8 @@ class Flat(models.Model):
     likes = models.ManyToManyField(
         User,
         verbose_name='Кто лайкнул',
-        blank=True
+        blank=True,
+        related_name='likes'
     )
 
     def __str__(self):
@@ -63,14 +64,14 @@ class Complaint(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name='Кто жалуется',
-        related_name='complaints_of_user'
+        related_name='complaints'
     )
     flat = models.ForeignKey(
         Flat,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name='Квартира, на которую пожаловались',
-        related_name='complaints_to_flat'
+        related_name='complaints'
     )
     text = models.TextField(verbose_name='Текст жалобы')
 
